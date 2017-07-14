@@ -19,7 +19,7 @@ public class FaceAPIController {
 	@Value("${subscription.key}")
 	private String subscriptionKey;
 	@Value("${sample.url}")
-	private String sample;
+	private String sampleUrl;
 
 	@RequestMapping("/check")
 	public String check() {
@@ -31,7 +31,7 @@ public class FaceAPIController {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.set("Ocp-Apim-Subscription-Key", subscriptionKey);
 
-		String body = "{ \"url\": \"" + sample + "\" }";
+		String body = "{ \"url\": \"" + sampleUrl + "\" }";
 
 		HttpEntity<String> entity = new HttpEntity<String>(body, headers);
 
