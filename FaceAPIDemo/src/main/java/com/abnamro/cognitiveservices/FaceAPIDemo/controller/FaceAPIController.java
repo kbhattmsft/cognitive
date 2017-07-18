@@ -7,11 +7,14 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import com.abnamro.cognitiveservices.FaceAPIDemo.model.FaceAPIModel;
 
 @RestController
 public class FaceAPIController {
@@ -21,17 +24,22 @@ public class FaceAPIController {
 	@Value("${sample.url}")
 	private String sampleUrl;
 
-	@RequestMapping("/check")
-	public String check() {
+	@RequestMapping("/detect")
+	public String check(@ModelAttribute FaceAPIModel model) {
 
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		headers.set("Ocp-Apim-Subscription-Key", subscriptionKey);
 
-		String body = "{ \"url\": \"" + sampleUrl + "\" }";
+		// Form values take precendence
+		String key = model.getKey() != null ? model.getKey() : subscriptionKey;
+		String url = model.getUrl() != null ? model.getUrl() : sampleUrl;
+
+		headers.set("Ocp-Apim-Subscription-Key", key);
+
+		String body = "{ \"url\": \"" + url + "\" }";
 
 		HttpEntity<String> entity = new HttpEntity<String>(body, headers);
 
@@ -43,6 +51,7 @@ public class FaceAPIController {
 				String.class);
 
 		return result.getBody();
+
 	}
 
 }
