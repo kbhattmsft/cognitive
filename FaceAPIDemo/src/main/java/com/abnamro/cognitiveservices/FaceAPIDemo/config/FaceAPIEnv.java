@@ -15,7 +15,6 @@ public class FaceAPIEnv {
 	private String subscriptionKey;
 
 	public String getKey() {
-
 		return getKeyCF() != null ? getKeyCF() : subscriptionKey;
 	}
 
@@ -28,6 +27,7 @@ public class FaceAPIEnv {
 		} catch (CloudFoundryEnvironmentException e) {
 			return null;
 		}
+		// CF UPSI needs to be named as "cognitive"
 		CloudFoundryService service = environment.getService("cognitive");
 
 		return (String) service.getCredentials().get("key");
