@@ -4,7 +4,7 @@ Consume Microsoft Cognitive Services API from Spring Boot application
 * Face API [1] example with age and emotion attributes: 
   - Git clone
   - <code>FaceAPIDemo/mvn clean install</code>
-  - <code>java -jar target/FaceAPIDemo-0.0.1-SNAPSHOT.jar --subscription.key=\<key\> --sample.url=\<picture url\> --face.attributes=\<csv\>
+  - <code>java -jar target/FaceAPIDemo-0.0.1-SNAPSHOT.jar --subscription.key=\<key\> --sample.url=\<picture url\> --face.attributes=\<csv\></code>
 * UI mode: Just hit root deployment url (e.g. http://localhost:8080)
 * API mode: 
   - Make sure environment variables <code>subscription.key</code>, <code>sample.url</code> and <code>face.attributes</code> are populated
