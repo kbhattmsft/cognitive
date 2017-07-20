@@ -4,6 +4,15 @@ public class FaceAPIModel {
 
 	private String key;
 	private String url;
+	private String attributes;
+
+	public String getAttributes() {
+		return attributes;
+	}
+
+	public void setAttributes(String attributes) {
+		this.attributes = attributes;
+	}
 
 	public String getKey() {
 		return key;

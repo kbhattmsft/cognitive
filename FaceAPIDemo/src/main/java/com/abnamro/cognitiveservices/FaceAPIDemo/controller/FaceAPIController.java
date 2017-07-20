@@ -1,5 +1,6 @@
 package com.abnamro.cognitiveservices.FaceAPIDemo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -14,15 +15,19 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.abnamro.cognitiveservices.FaceAPIDemo.config.FaceAPIEnv;
 import com.abnamro.cognitiveservices.FaceAPIDemo.model.FaceAPIModel;
 
 @RestController
 public class FaceAPIController {
 
-	@Value("${subscription.key}")
-	private String subscriptionKey;
+	@Autowired
+	private FaceAPIEnv faceAPIEnv;
+
 	@Value("${sample.url}")
 	private String sampleUrl;
+	@Value("${face.attributes}")
+	private String faceAttributes;
 
 	@RequestMapping("/detect")
 	public String check(@ModelAttribute FaceAPIModel model) {
@@ -34,8 +39,9 @@ public class FaceAPIController {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		// Form values take precendence
-		String key = model.getKey() != null ? model.getKey() : subscriptionKey;
+		String key = model.getKey() != null ? model.getKey() : faceAPIEnv.getKey();
 		String url = model.getUrl() != null ? model.getUrl() : sampleUrl;
+		String attributes = model.getAttributes() != null ? model.getAttributes() : faceAttributes;
 
 		headers.set("Ocp-Apim-Subscription-Key", key);
 
@@ -45,7 +51,7 @@ public class FaceAPIController {
 
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().scheme("https")
 				.host("westcentralus.api.cognitive.microsoft.com").path("/face/v1.0/detect")
-				.query("returnFaceAttributes={keyword}").buildAndExpand("age,emotion");
+				.query("returnFaceAttributes={keyword}").buildAndExpand(attributes);
 
 		ResponseEntity<String> result = restTemplate.exchange(uriComponents.toUriString(), HttpMethod.POST, entity,
 				String.class);
