@@ -1,12 +1,12 @@
-package com.abnamro.cognitiveservices.FaceAPIDemo.controller;
+package com.microsoft.cognitiveservices.FaceAPIDemo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.abnamro.cognitiveservices.FaceAPIDemo.config.FaceAPIEnv;
-import com.abnamro.cognitiveservices.FaceAPIDemo.model.FaceAPIModel;
+import com.microsoft.cognitiveservices.FaceAPIDemo.config.FaceAPIEnv;
+import com.microsoft.cognitiveservices.FaceAPIDemo.model.FaceAPIModel;
 
 @Controller
 public class FaceAPIViewController {

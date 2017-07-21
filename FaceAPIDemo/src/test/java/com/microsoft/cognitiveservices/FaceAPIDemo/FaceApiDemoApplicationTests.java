@@ -1,4 +1,4 @@
-package com.abnamro.cognitiveservices.FaceAPIDemo;
+package com.microsoft.cognitiveservices.FaceAPIDemo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

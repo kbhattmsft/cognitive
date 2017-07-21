@@ -1,4 +1,4 @@
-package com.abnamro.cognitiveservices.FaceAPIDemo.model;
+package com.microsoft.cognitiveservices.FaceAPIDemo.model;
 
 public class FaceAPIModel {
 

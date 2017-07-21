@@ -1,4 +1,4 @@
-package com.abnamro.cognitiveservices.FaceAPIDemo.controller;
+package com.microsoft.cognitiveservices.FaceAPIDemo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,8 +15,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.abnamro.cognitiveservices.FaceAPIDemo.config.FaceAPIEnv;
-import com.abnamro.cognitiveservices.FaceAPIDemo.model.FaceAPIModel;
+import com.microsoft.cognitiveservices.FaceAPIDemo.config.FaceAPIEnv;
+import com.microsoft.cognitiveservices.FaceAPIDemo.model.FaceAPIModel;
 
 @RestController
 public class FaceAPIController {
@@ -38,7 +38,7 @@ public class FaceAPIController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		// Form values take precendence
+		// Form values take precedence
 		String key = model.getKey() != null ? model.getKey() : faceAPIEnv.getKey();
 		String url = model.getUrl() != null ? model.getUrl() : sampleUrl;
 		String attributes = model.getAttributes() != null ? model.getAttributes() : faceAttributes;

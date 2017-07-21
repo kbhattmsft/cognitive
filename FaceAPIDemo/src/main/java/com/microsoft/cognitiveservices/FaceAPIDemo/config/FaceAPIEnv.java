@@ -1,4 +1,4 @@
-package com.abnamro.cognitiveservices.FaceAPIDemo.config;
+package com.microsoft.cognitiveservices.FaceAPIDemo.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
